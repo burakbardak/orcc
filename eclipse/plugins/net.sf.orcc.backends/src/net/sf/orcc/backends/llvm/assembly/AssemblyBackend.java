@@ -1,4 +1,4 @@
-package net.sf.orcc.backends.assembly;
+package net.sf.orcc.backends.llvm.assembly;
 
 import net.sf.orcc.backends.AbstractBackend;
 
