@@ -73,27 +73,29 @@ abstract class LLVMTemplate extends CommonPrinter {
 	}
 
 	/////////////////////////////////
-	// Expressions Register to Register
+	// Expressions Register to Register -- OpBinary
 	/////////////////////////////////
 	
 	override stringRepresentation(OpBinary op) {
 		switch (op) {
 			
+//			case OpBinary::NOP:"NOP"			
 			case OpBinary::PLUS:
 				if (floating)
 				throw new OrccRuntimeException("Floating operation is not supported")
 				else 					"ADD"
 			case OpBinary::MINUS:
 				if (floating)
-				throw new OrccRuntimeException("Floating operation is not supported")
+				throw new OrccRuntimeException("Floating operation is not supported" + op)
 				else 					"SUB"		
 			case OpBinary::TIMES:
 				if (floating)
 				throw new OrccRuntimeException("Floating operation is not supported")
-				else 					"MUL"
-			case OpBinary::BITAND: 		"and"
-			case OpBinary::BITOR: 		"or"
-			case OpBinary::BITXOR:		"xor"
+				else 					"MUL"		
+			
+			case OpBinary::BITAND: 		"LAND"	
+			case OpBinary::BITOR: 		"LOR"
+			case OpBinary::BITXOR:		"LXOR"
 			case OpBinary::DIV:			"NOT Supported":
 				throw new OrccRuntimeException("The"+ op +"operation is not supported")				
 			case OpBinary::DIV_INT:			"NOT Supported":
