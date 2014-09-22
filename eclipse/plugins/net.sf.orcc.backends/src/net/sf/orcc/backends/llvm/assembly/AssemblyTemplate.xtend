@@ -78,67 +78,90 @@ abstract class LLVMTemplate extends CommonPrinter {
 	
 	override stringRepresentation(OpBinary op) {
 		switch (op) {
-			
-//			case OpBinary::NOP:"NOP"			
+//			case OpBinary::NOP:"NOP"		
 			case OpBinary::PLUS:
 				if (floating)
-				throw new OrccRuntimeException("Floating operation is not supported")
+				throw new OrccRuntimeException("Floating operation is not supported" + op)
 				else 					"ADD"
 			case OpBinary::MINUS:
 				if (floating)
 				throw new OrccRuntimeException("Floating operation is not supported" + op)
-				else 					"SUB"		
+				else 					"SUB"	
 			case OpBinary::TIMES:
-				if (floating)
-				throw new OrccRuntimeException("Floating operation is not supported")
-				else 					"MUL"		
-			
-			case OpBinary::BITAND: 		"LAND"	
-			case OpBinary::BITOR: 		"LOR"
-			case OpBinary::BITXOR:		"LXOR"
-			case OpBinary::DIV:			"NOT Supported":
-				throw new OrccRuntimeException("The"+ op +"operation is not supported")				
-			case OpBinary::DIV_INT:			"NOT Supported":
-				throw new OrccRuntimeException("The"+ op +"operation is not supported")
+				if(floating)
+				throw new OrccRuntimeException("Floating operation is not supported" + op)
+				else 					"MUL"	
+// ---------------------------------------------------------------------------------------------These are going to be replaced by optimization transformations... 
+//			case OpBinary::MUL_ADD
+//				if(floating)
+//				throw new OrccRuntimeException("Floating operation is not supported" + op)
+//				else					"MULADD"
+//			case OpBinary::MUL_SUB
+//				if(floating)
+//				throw new OrccRuntimeException("Floating operation is not supported" + op)
+//				else					"MULSUB"
+//			case OpBinary::MUL_ACC
+//				if(floating)
+//				throw new OrccRuntimeException("Floating operation is not supported" + op)
+//				else					"MULACC"
+			case OpBinary::BITAND: 		
+				if(floating)
+				throw new OrccRuntimeException("Floating operation is not supported" + op)
+				else					"LAND"
+			case OpBinary::BITXOR: 		
+				if(floating)
+				throw new OrccRuntimeException("Floating operation is not supported" + op)
+				else					"LXOR"
+//			case OpBinary::BITXNR: 			
+//				if(floating)
+//				throw new OrccRuntimeException("Floating operation is not supported" + op)
+//				else					"LXNR"					
+			case OpBinary::BITOR:
+				if(floating)
+				throw new OrccRuntimeException("Floating operation is not supported" + op)
+				else					"LOR"
+//			case OpBinary::LNOR:
+//				if(floating)
+//				throw new OrccRuntimeException("Floating operation is not supported" + op)
+//				else					"LNOR"
+//			case OpBinary::LNOT:
+//				if(floating)
+//				throw new OrccRuntimeException("Floating operation is not supported" + op)
+//				else					"LNOT"
+//			case OpBinary::LNAND:
+//				if(floating)
+//				throw new OrccRuntimeException("Floating operation is not supported" + op)
+//				else					"LNAND"
+			case OpBinary::SHIFT_LEFT:	"LSL"
+			case OpBinary::SHIFT_RIGHT:	"LSR"
+
+			case OpBinary::DIV:
+				throw new OrccRuntimeException("Operation is not supported :" + op)
+			case OpBinary::DIV_INT:
+				throw new OrccRuntimeException("Operation is not supported :" + op)
 			case OpBinary::EQ:
-				if (floating)			"fcmp oeq"
-				else					"icmp eq"
-			case OpBinary::EXP:			"pow"
+				throw new OrccRuntimeException("Operation is not supported :" + op)			
+			case OpBinary::EXP:
+				throw new OrccRuntimeException("Operation is not supported :" + op)			
 			case OpBinary::GE:
-				if (floating)			"fcmp oge"
-				else if (signed)		"icmp sge"
-				else 					"icmp uge"
+				throw new OrccRuntimeException("Operation is not supported :" + op)
 			case OpBinary::GT:
-				if (floating)			"fcmp ogt"
-				else if (signed)		"icmp sgt"
-				else 					"icmp ugt"
-			case OpBinary::LOGIC_AND:	"and"
+				throw new OrccRuntimeException("Operation is not supported :" + op)
+			case OpBinary::LOGIC_AND:
+				throw new OrccRuntimeException("Operation is not supported :" + op)			
 			case OpBinary::LE:
-				if (floating)			"fcmp ole"
-				else if (signed)		"icmp sle"
-				else 					"icmp ule"
-			case OpBinary::LOGIC_OR:	"or"
+				throw new OrccRuntimeException("Operation is not supported :" + op)
 			case OpBinary::LT:
-				if (floating)			"fcmp olt"
-				else if (signed)		"icmp slt"
-				else 					"icmp ult"
-
+				throw new OrccRuntimeException("Operation is not supported :" + op)			
 			case OpBinary::MOD:
-				if (floating)			"frem"
-				else if (signed)		"srem"
-				else 					"urem"
+				throw new OrccRuntimeException("Operation is not supported :" + op)
 			case OpBinary::NE:
-				if (floating)			"fcmp one"
-				else 					"icmp ne"
-			case OpBinary::SHIFT_LEFT:	"shl"
-			case OpBinary::SHIFT_RIGHT:
-				if (signed)				"ashr"
-				else 					"lshr"
-
+				throw new OrccRuntimeException("Operation is not supported :" + op)
 			default:
 				throw new OrccRuntimeException("Unknown binary operator : " + op)
 		}
 	}
+	
 	
 	override caseExprBinary(ExprBinary expr) {
 		val op = expr.op
