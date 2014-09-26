@@ -174,7 +174,7 @@ public class AssemblyBackend extends AbstractBackend {
 			netPrinter.setNetwork(network);
 			// Write the file
 			return FilesManager.writeFile(netPrinter.getNetworkFileContent(),
-					srcPath, network.getSimpleName() + ".ll");
+					srcPath, network.getSimpleName() + ".IPPRO");
 		}
 
 		@Override
@@ -195,14 +195,14 @@ public class AssemblyBackend extends AbstractBackend {
 		protected Result doGenerateInstance(Instance instance) {
 			childrenPrinter.setInstance(instance);
 			return FilesManager.writeFile(childrenPrinter.getContent(), srcPath,
-					instance.getName() + ".ll");
+					instance.getName() + ".IPPRO");
 		}
 
 		@Override
 		protected Result doGenerateActor(Actor actor) {
 			childrenPrinter.setActor(actor);
 			return FilesManager.writeFile(childrenPrinter.getContent(), srcPath,
-					actor.getName() + ".ll");
+					actor.getName() + ".IPPRO");
 		}
 	}
 
